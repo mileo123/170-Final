@@ -47,13 +47,30 @@ def say_birthday(self):
   if self.birthday is None:
     return "Unknown"
 
-day = self.birthday.get_day()
-month_number = self.birthday.get_month()
+  day = self.birthday.get_day()
+  month_number = self.birthday.get_month()
 
-month_names = [
+  month_names = [
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 ]
-month_name = motnh_names[month_number - 1]
+  month_name = motnh_names[month_number - 1]
+
+  if 11 <= day <= 13:
+  suffix = "th"
+  else:
+    last_digit = day % 10
+    if last_digit == 1:
+      suffix = "st"
+    elif last_digit == 2:
+      suffix = "nd"
+    elif last_digit == 3:
+      suffix = "rd"
+    else:
+      suffix = "th"
+  return str(day) + suffix + " of " + month_name
+
+def __str__(self):
+  return self.first_name + " " + self.last_name
 
 
     
