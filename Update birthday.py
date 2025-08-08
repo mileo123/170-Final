@@ -61,6 +61,3 @@ class Birthday:
     def str(self):
         """Return M/D format"""
         return str(self.month) + "/" + str(self.day)
-  
-            
-    
