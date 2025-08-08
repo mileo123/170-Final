@@ -46,5 +46,15 @@ def say_birthday(self):
   """ Returns birthday as string """
   if self.birthday is None:
     return "Unknown"
+
+day = self.birthday.get_day()
+month_number = self.birthday.get_month()
+
+month_names = [
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+]
+month_name = motnh_names[month_number - 1]
+
+
     
     
