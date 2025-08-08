@@ -12,7 +12,7 @@ class Person:
 
     def introduce(self):
         """Intro message"""
-        print("Hello, my name is", self.first_name, "and my birthday is on", self.say_birthday())
+        print(f"Hello, my name is {self.first_name} and my birthday is on {self.say_birthday()}")
 
     def set_birthday(self, month, day):
         """Setting the birthday"""
@@ -70,7 +70,7 @@ class Person:
             else:
                 suffix = "th"
 
-        return str(day) + suffix + " of " + month_name
+        return f"{day}{suffix} of {month_name}"
 
     def str(self):
-        return self.first_name + " " + self.last_name
+        return f"{self.first_name} {self.last_name}"
