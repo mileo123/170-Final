@@ -59,7 +59,7 @@ def search_friend():
     name = input("Enter first or last name to search: ").lower()
     results = [f for f in friends if name in f.get_first_name().lower() or name in f.get_last_name().lower()]
     if not results:
-        print("No matching freinds found.")
+        print("No matching friends found.")
         return
 
     print("\nSearch results:")
@@ -69,8 +69,8 @@ def search_friend():
     while True:
         choice = input("Select a friend by number to edit/delete or press Enter to return: ")
         if choice == "":
-            return # main menu
-        if not chhoice.isdigit() or int(choice) < 1 or int(choice) > len(results):
+            return  # Return to main menu
+        if not choice.isdigit() or int(choice) < 1 or int(choice) > len(results):
             print("Invalid selection. Try again.")
             continue
         selected = results[int(choice) - 1]
@@ -90,14 +90,57 @@ def search_friend():
         elif action == "3":
             continue
         else:
-            print("Invalid choice, Try again.")
+            print("Invalid choice. Try again.")
+
 def edit_friend(friend):
     print("Press Enter to keep current value.")
-    
-            
-        
+
+    new_first = input(f"First name [{friend.get_first_name()}]: ")
+    if new_first.strip():
+        friend.first_name = new_first.strip()
+
+    new_last = input(f"Last name [{friend.get_last_name()}]: ")
+    if new_last.strip():
+        friend.last_name = new_last.strip()
+
+    if friend.birthday:
+        current_month = friend.birthday.get_month()
+        current_day = friend.birthday.get_day()
     else:
-        print("No matching friends found.")
+        current_month = None
+        current_day = None
+
+    month_input = input(f"Birthday month [{current_month if current_month else ''}]: ")
+    day_input = input(f"Birthday day [{current_day if current_day else ''}]: ")
+
+    if month_input.isdigit() and day_input.isdigit():
+        friend.set_birthday(int(month_input), int(day_input))
+
+    new_address = input(f"Address [{friend.get_address()}]: ")
+    if new_address.strip():
+        friend.set_address(new_address.strip())
+
+    new_phone = input(f"Phone [{friend.get_phone()}]: ")
+    if new_phone.strip():
+        friend.set_phone(new_phone.strip())
+
+    new_email = input(f"Email [{friend.get_email()}]: ")
+    if new_email.strip():
+        friend.set_email(new_email.strip())
+
+    print("Friend updated successfully!")
+
+def delete_friend(friend):
+    confirm1 = input(f"Are you sure you want to delete {friend}? (yes/no): ").lower()
+    if confirm1 == "yes":
+        confirm2 = input("This action is permanent. Confirm delete? (yes/no): ").lower()
+        if confirm2 == "yes":
+            friends.remove(friend)
+            print("Friend deleted.")
+        else:
+            print("Delete cancelled.")
+    else:
+        print("Delete cancelled.")
 
 def run_reports():
     print("Reports menu coming soon...")
@@ -124,5 +167,5 @@ def main():
         else:
             print("Invalid choice. Try again.")
 
-if name == "main":
+if __name__ == "__main__":
     main()
