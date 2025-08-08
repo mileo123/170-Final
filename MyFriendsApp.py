@@ -58,9 +58,44 @@ def create_friend():
 def search_friend():
     name = input("Enter first or last name to search: ").lower()
     results = [f for f in friends if name in f.get_first_name().lower() or name in f.get_last_name().lower()]
-    if results:
-        for idx, friend in enumerate(results, start=1):
-            print(f"{idx}. {friend}")
+    if not results:
+        print("No matching freinds found.")
+        return
+
+    print("\nSearch results:")
+    for idx, friend in enumerate(results, start=1):
+        print(f"{idx}. {friend}")
+
+    while True:
+        choice = input("Select a friend by number to edit/delete or press Enter to return: ")
+        if choice == "":
+            return # main menu
+        if not chhoice.isdigit() or int(choice) < 1 or int(choice) > len(results):
+            print("Invalid selection. Try again.")
+            continue
+        selected = results[int(choice) - 1]
+
+        print(f"\nSelected: {selected}")
+        print("1 - Edit friend")
+        print("2 - Delete friend")
+        print("3 - Return to search results")
+        action = input("Choose an action: ")
+
+        if action == "1":
+            edit_friend(selected)
+            return
+        elif action == "2":
+            delete_friend(selected)
+            return
+        elif action == "3":
+            continue
+        else:
+            print("Invalid choice, Try again.")
+def edit_friend(friend):
+    print("Press Enter to keep current value.")
+    
+            
+        
     else:
         print("No matching friends found.")
 
