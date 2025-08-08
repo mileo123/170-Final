@@ -74,5 +74,3 @@ class Person:
 
     def str(self):
         return self.first_name + " " + self.last_name
-    
-    
