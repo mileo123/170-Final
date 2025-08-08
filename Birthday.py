@@ -6,19 +6,19 @@ class Birthday:
 
     def init(self, month, day):
         """Creates a birthday, default is Jan 1 if invalid"""
-        if month >= 1 and month <= 12:
+        if 1 <= month <= 12:
             self.month = month
         else:
             self.month = 1
 
-        if day >= 1 and day <= Birthday.days_in_month[self.month - 1]:
+        if 1 <= day <= Birthday.days_in_month[self.month - 1]:
             self.day = day
         else:
             self.day = 1
 
     def set_day(self, day):
         """Changes the day for the correct month"""
-        if day >= 1 and day <= Birthday.days_in_month[self.month - 1]:
+        if 1 <= day <= Birthday.days_in_month[self.month - 1]:
             self.day = day
 
     def get_month(self):
@@ -60,4 +60,4 @@ class Birthday:
 
     def str(self):
         """Return M/D format"""
-        return str(self.month) + "/" + str(self.day)
+        return f"{self.month}/{self.day}"
